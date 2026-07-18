@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة ثابر التعليمية - دليلك التفاعلي</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: #0b5961;
+            background-image: linear-gradient(135deg, #09474d 0%, #158b97 100%);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            padding: 30px 10px;
+            text-align: center;
+            flex: 1;
+            padding-bottom: 100px; /* Space for fixed button */
+        }
+
+        .header-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px 50px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255,255,255,0.4);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #e0f2f1;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .feature-pill {
+            background: #ffffff;
+            color: #09474d;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-pill:hover {
+            transform: scale(1.05);
+            background: #e0f2f1;
+        }
+
+        .main-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: #f7fbfa;
+            color: #0b5961;
+            border-radius: 30px;
+            padding: 30px 25px;
+            width: 320px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border: 6px solid #a3d9d3;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        
+        .card::after {
+            content: 'اضغط للتفاصيل 👆';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e49e25;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        .card-whatsapp { border-color: #25D366; }
+        .card-classroom { 
+            border-color: #F4B400; 
+            background-color: #ffffff;
+        }
+        .card-chat { border-color: #0F9D58; }
+
+        .card-icon {
+            font-size: 4.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        /* Modals (Popups) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: #ffffff;
+            color: #333;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 20px;
+            padding: 40px 30px;
+            position: relative;
+            text-align: right;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            animation: slideUp 0.4s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 2rem;
+            color: #888;
+            cursor: pointer;
+            transition: color 0.3s;
+            line-height: 1;
+        }
+
+        .close-btn:hover { color: #e74c3c; }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #0b5961;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .modal-body {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .modal-body ul {
+            padding-right: 20px;
+        }
+        
+        .modal-body ul li {
+            margin-bottom: 15px;
+        }
+        
+        .modal-body strong {
+            color: #0b5961;
+        }
+
+        /* Call to Action Button */
+        .cta-container {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, #e49e25, #f39c12);
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 900;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(228, 158, 37, 0.4);
+            border: 3px solid #fff;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 25px rgba(228, 158, 37, 0.6);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(228, 158, 37, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(228, 158, 37, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(228, 158, 37, 0); }
+        }
+
+        .footer {
+            background: rgba(9, 71, 77, 0.9);
+            width: 100%;
+            padding: 20px 0;
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+            flex-wrap: wrap;
+            padding-bottom: 120px; /* Adjust for fixed button */
+        }
+        
+        @media (max-width: 768px) {
+            .header-title { font-size: 2.2rem; padding: 10px 30px; }
+            .card { width: 100%; max-width: 350px; }
+            .cta-btn { font-size: 1.2rem; padding: 12px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-title">نظام ثابر التعليمية</div>
+    <div class="subtitle">اضغط على أي قسم لمعرفة المزيد من التفاصيل حول ميزات منصتنا</div>
+
+    <div class="features-grid">
+        <div class="feature-pill" onclick="openModal('features-modal')">✨ استكشف ميزات المنصة الإضافية</div>
+    </div>
+
+    <div class="main-cards">
+        <!-- Google Classroom Card -->
+        <div class="card card-classroom" onclick="openModal('classroom-modal')">
+            <div class="card-icon">🏫</div>
+            <div class="card-title" style="color: #fbbc04;">جوجل كلاس روم</div>
+            <div class="card-content">
+                <p style="text-align: center; font-weight: 900; color: #0b5961; font-size: 1.2rem;">بيئة تعليمية متكاملة وسهلة الاستخدام.</p>
+                <p style="text-align: center; color: #666;">الفصول الافتراضية، الواجبات، والملفات في مكان واحد.</p>
+            </div>
+        </div>
+
+        <!-- Google Chat Card -->
+        <div class="card card-chat" onclick="openModal('chat-modal')">
+            <div class="card-icon">💬</div>
+            <div class="card-title" style="color: #0F9D58;">جوجل تشات</div>
+            <div class="card-content">
+                <p style="text-align: center; font-weight: 900; color: #0b5961; font-size: 1.2rem;">للمزيد من الفعالية في الدراسة.</p>
+                <p style="text-align: center; color: #666;">مساحات النقاش، التواصل المباشر مع المعلمين والزملاء.</p>
+            </div>
+        </div>
+        
+        <!-- WhatsApp Card -->
+        <div class="card card-whatsapp" onclick="openModal('whatsapp-modal')">
+            <div class="card-icon">📢</div>
+            <div class="card-title" style="color: #128c7e;">مجتمع واتساب</div>
+            <div class="card-content">
+                <p style="text-align: center; font-weight: 900; color: #0b5961; font-size: 1.2rem;">لتبقَ على اطلاع دائم.</p>
+                <p style="text-align: center; color: #666;">إشعارات فورية وتنبيهات مستمرة للطلبة المشتركين.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Button -->
+<div class="cta-container">
+    <a href="https://linktr.ee/thaberacademy" target="_blank" class="cta-btn">
+        🚀 اشترك في المنصة الآن
+    </a>
+</div>
+
+<div class="footer">
+    <div style="display: flex; gap: 10px; align-items: center;"><span>📸</span> <span dir="ltr">@Thaber_educational</span></div>
+    <div style="display: flex; gap: 10px; align-items: center;"><span>📞</span> <span dir="ltr">71444589</span></div>
+    <div style="display: flex; gap: 10px; align-items: center;"><span>🌐</span> <span dir="ltr">www.thaber.com</span></div>
+</div>
+
+<!-- ================= MODALS ================= -->
+
+<!-- Classroom Modal -->
+<div class="modal-overlay" id="classroom-modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('classroom-modal')">&times;</span>
+        <div class="modal-title"><span style="font-size: 2.5rem;">🏫</span> جوجل كلاس روم</div>
+        <div class="modal-body">
+            <p>منصة <strong>جوجل كلاس روم</strong> هي القلب النابض لعملية التعلم في منصة ثابر. حيث تم تنظيمها بعناية لتقديم تجربة دراسية سلسة:</p>
+            <ul>
+                <li><strong>مكتبة الدروس المسجلة:</strong> أرشيف كامل لجميع الحصص السابقة مقسمة حسب الفصول والوحدات لتتمكن من مراجعتها في أي وقت.</li>
+                <li><strong>الوصول السريع للحصص المباشرة:</strong> روابط الدخول للحصص التفاعلية محدثة باستمرار وموجودة في واجهة الفصل.</li>
+                <li><strong>إدارة الملفات والأنشطة:</strong> جميع الملازم، أوراق العمل، والملخصات متاحة للتحميل ومصنفة بشكل مرتب.</li>
+                <li><strong>الواجبات المنظمة:</strong> استلام وتسليم الواجبات إلكترونياً مع معرفة تواريخ التسليم النهائية لتنظيم وقتك.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Chat Modal -->
+<div class="modal-overlay" id="chat-modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('chat-modal')">&times;</span>
+        <div class="modal-title"><span style="font-size: 2.5rem;">💬</span> جوجل تشات (Google Chat)</div>
+        <div class="modal-body">
+            <p>لأن النقاش هو أساس الفهم، وفرنا لك مساحة تفاعلية آمنة ومنظمة عبر <strong>جوجل تشات</strong>:</p>
+            <ul>
+                <li><strong>مساحات مخصصة (Spaces):</strong> غرف نقاش مخصصة لكل مادة للتركيز على الأسئلة الخاصة بها دون تشتت.</li>
+                <li><strong>ذاكرة المنصة الدائمة:</strong> محادثاتك وأسئلتك السابقة، بالإضافة إلى ردود المعلمين، محفوظة دائماً ويمكنك العودة لها.</li>
+                <li><strong>مشاركة سهلة للملفات:</strong> إمكانية إرسال صور للأسئلة أو ملفات مباشرة للمعلم لمناقشتها.</li>
+                <li><strong>مرونة الوصول:</strong> يمكنك استخدام التطبيق من هاتفك المحمول، جهازك اللوحي (التابلت)، أو الكمبيوتر الشخصي بكل سهولة.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- WhatsApp Modal -->
+<div class="modal-overlay" id="whatsapp-modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('whatsapp-modal')">&times;</span>
+        <div class="modal-title"><span style="font-size: 2.5rem;">📢</span> مجتمع واتساب</div>
+        <div class="modal-body">
+            <p>نحرص في منصة ثابر على بقائك في قلب الحدث عبر <strong>مجتمع واتساب الخاص بالمنصة</strong>:</p>
+            <ul>
+                <li><strong>إشعارات فورية:</strong> تذكير بمواعيد الحصص المباشرة قبل بدايتها.</li>
+                <li><strong>تنبيهات هامة:</strong> إعلانات عن توفر ملخصات جديدة، أو اقتراب مواعيد الاختبارات.</li>
+                <li><strong>تواصل سريع:</strong> أداة سريعة وموثوقة لإيصال التوجيهات الإدارية للطلاب وأولياء الأمور.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- General Features Modal -->
+<div class="modal-overlay" id="features-modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('features-modal')">&times;</span>
+        <div class="modal-title"><span style="font-size: 2.5rem;">✨</span> الميزات الإضافية لمنصة ثابر</div>
+        <div class="modal-body">
+            <p>لا نكتفي بتقديم الدروس فقط، بل نوفر منظومة متكاملة لضمان تفوقك:</p>
+            <ul>
+                <li><strong>تقويم دراسي مرن:</strong> خطط دراسية واضحة تساعد الطالب على تنظيم وقته بين المذاكرة وحضور الحصص.</li>
+                <li><strong>الاختبارات والتقييمات الرقمية:</strong> اختبارات دورية (قصيرة وشهرية) لقياس مستوى الفهم وتثبيت المعلومات.</li>
+                <li><strong>تتبع وتحليل أداء الطالب:</strong> تقارير دورية توضح نقاط القوة والمجالات التي تحتاج لتطوير.</li>
+                <li><strong>شهادات مشاركة وإتمام:</strong> تحفيز مستمر للطلاب المتميزين والمواظبين تقديراً لجهودهم.</li>
+                <li><strong>دعم تقني وإداري متواصل:</strong> فريق جاهز لحل أي مشكلة تقنية تواجهك أثناء استخدام المنصة.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Functions to handle modals
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = 'flex';
+        // Prevent scrolling on background
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+        // Restore scrolling
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        if (event.target.className === 'modal-overlay') {
+            event.target.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+</script>
+
+</body>
+</html>
