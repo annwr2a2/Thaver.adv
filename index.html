@@ -21,7 +21,6 @@
             overflow-x: hidden;
         }
 
-        /* شريط الثقة العلوي لولي الأمر */
         .trust-bar {
             background: rgba(0, 0, 0, 0.4);
             width: 100%;
@@ -70,7 +69,6 @@
             line-height: 1.6;
         }
 
-        /* قسم الميزات الجذاب مع وميض تفاعلي */
         .features-grid {
             display: flex;
             flex-wrap: wrap;
@@ -98,7 +96,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid #f1c40f;
-            animation: pulse-glow 2s infinite ease-in-out; /* وميض مستمر لجذب الانتباه */
+            animation: pulse-glow 2s infinite ease-in-out;
         }
         
         .feature-pill:hover {
@@ -116,7 +114,6 @@
             margin-bottom: 40px;
         }
 
-        /* تصميم البطاقات التسويقي */
         .card {
             background-color: #ffffff;
             border-radius: 30px;
@@ -153,7 +150,6 @@
         .card-chat { border-color: #0F9D58; }
         .card-whatsapp { border-color: #128c7e; }
 
-        /* حركة الوميض للأيقونات داخل البطاقات للدلالة على أنها قابلة للضغط */
         @keyframes pulse-icon {
             0% { transform: scale(1); }
             50% { transform: scale(1.15); text-shadow: 0 0 15px rgba(241, 196, 15, 0.6); }
@@ -165,11 +161,11 @@
             margin-bottom: 10px; 
             z-index: 2; 
             position: relative;
-            animation: pulse-icon 2s infinite ease-in-out; /* وميض الأيقونة */
+            animation: pulse-icon 2s infinite ease-in-out; 
             display: inline-block;
         }
         
-        .card:hover .card-icon { animation: none; transform: scale(1.1); } /* إيقاف الوميض عند التمرير وتكبيرها قليلاً */
+        .card:hover .card-icon { animation: none; transform: scale(1.1); }
 
         .card-title { font-size: 1.8rem; font-weight: 900; margin-bottom: 15px; z-index: 2; position: relative; }
         .card-content { flex: 1; z-index: 2; position: relative; }
@@ -179,18 +175,32 @@
             padding: 5px 12px; border-radius: 15px; display: inline-block; margin-bottom: 10px;
         }
 
-        /* النوافذ المنبثقة (Modals) بمظهر احترافي */
+        /* ------------------------------------- */
+        /* تعديلات النوافذ المنبثقة (لحل مشكلة التمرير) */
+        /* ------------------------------------- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.8); display: none; justify-content: center; align-items: center;
             z-index: 1000; backdrop-filter: blur(8px);
+            padding: 20px; /* إضافة مسافة جانبية للشاشات الصغيرة */
+            box-sizing: border-box;
         }
+        
         .modal-content {
-            background: #ffffff; color: #333; width: 90%; max-width: 650px;
-            border-radius: 25px; padding: 40px; position: relative; text-align: right;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5); animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            background: #ffffff; color: #333; width: 100%; max-width: 650px;
+            border-radius: 25px; padding: 30px; position: relative; text-align: right;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5); 
+            animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             border: 4px solid #f1c40f;
+            /* سر التمرير الداخلي هنا 👇 */
+            max-height: 85vh; /* أقصى ارتفاع 85% من الشاشة */
+            overflow-y: auto; /* تفعيل شريط التمرير إذا كان النص طويلاً */
         }
+        
+        /* تجميل شريط التمرير */
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-thumb { background-color: #f1c40f; border-radius: 10px; }
+
         @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         .close-btn {
@@ -203,13 +213,21 @@
             font-size: 2.2rem; font-weight: 900; margin-bottom: 20px;
             color: #084c54; border-bottom: 3px solid #eee; padding-bottom: 15px; display: flex; align-items: center; gap: 15px;
         }
+        
         .modal-body { font-size: 1.15rem; line-height: 1.9; }
         .modal-body ul { padding-right: 25px; }
         .modal-body ul li { margin-bottom: 15px; position: relative; }
         .modal-body ul li::marker { content: '✅ '; font-size: 1.2rem; }
         .modal-body strong { color: #d35400; }
+        
+        /* زر الإغلاق الإضافي أسفل النص */
+        .modal-close-btn-bottom {
+            display: block; width: 100%; margin-top: 20px; padding: 12px;
+            background: #eee; color: #555; text-align: center; font-weight: bold;
+            border-radius: 15px; border: none; font-size: 1.1rem; cursor: pointer; transition: all 0.3s;
+        }
+        .modal-close-btn-bottom:hover { background: #ddd; color: #333; }
 
-        /* زر البيع (Call to Action) */
         .cta-container { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 100; width: 90%; max-width: 400px; text-align: center; }
         .cta-btn {
             background: linear-gradient(45deg, #f39c12, #d35400); color: #ffffff;
@@ -236,12 +254,13 @@
             .subtitle { font-size: 1.1rem; }
             .card { width: 100%; max-width: 350px; }
             .trust-bar { font-size: 0.8rem; gap: 15px; }
+            .modal-title { font-size: 1.8rem; }
+            .modal-content { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-<!-- شريط طمأنة لولي الأمر والطالب -->
 <div class="trust-bar">
     <span>👨‍🏫 نخبة من أفضل المعلمين</span>
     <span>📊 تقارير أداء مستمرة</span>
@@ -253,13 +272,11 @@
     <p class="subtitle">نحن لا نقدم دروساً فقط.. نحن نصنع بيئة متكاملة تضمن <strong>متعة التعلم للطالب</strong>، و<strong>راحة البال لولي الأمر</strong>. اكتشف كيف نفعل ذلك 👇</p>
 
     <div class="features-grid">
-        <!-- تم تعديل النص وإضافة حركة وميض مستمرة للزر -->
         <div class="feature-pill" onclick="openModal('features-modal')">⭐ لماذا يختارنا الطلاب؟ (اكتشف السر)</div>
     </div>
 
     <div class="main-cards">
         
-        <!-- بطاقة الطالب (جوجل كلاس روم) -->
         <div class="card card-classroom" onclick="openModal('classroom-modal')">
             <span class="marketing-tag">الطالب يدرس بذكاء 🧠</span>
             <div class="card-icon">🏫</div>
@@ -270,7 +287,6 @@
             </div>
         </div>
 
-        <!-- بطاقة التفاعل (جوجل تشات) -->
         <div class="card card-chat" onclick="openModal('chat-modal')">
             <span class="marketing-tag">لا للمذاكرة وحيداً 🤝</span>
             <div class="card-icon">💬</div>
@@ -281,7 +297,6 @@
             </div>
         </div>
         
-        <!-- بطاقة ولي الأمر (واتساب) -->
         <div class="card card-whatsapp" onclick="openModal('whatsapp-modal')">
             <span class="marketing-tag">لولي الأمر المطمئن 🛡️</span>
             <div class="card-icon">📢</div>
@@ -306,10 +321,10 @@
     <div style="display: flex; gap: 10px; align-items: center;"><span>🌐</span> <span dir="ltr">www.thaber.com</span></div>
 </div>
 
-<!-- ================= MODALS (الرسائل التسويقية الداخلية) ================= -->
+<!-- ================= MODALS ================= -->
 <div class="modal-overlay" id="classroom-modal">
     <div class="modal-content">
-        <span class="close-btn" onclick="closeModal('classroom-modal')">&times;</span>
+        <span class="close-btn" onclick="closeFromUI()">&times;</span>
         <div class="modal-title"><span style="font-size: 2.5rem;">🏫</span> نظام دراسي مصمم لنجاحك</div>
         <div class="modal-body">
             <p>نحن نعلم أن الفوضى تشتت التركيز، لذلك استخدمنا <strong>جوجل كلاس روم</strong> لنرتب لك طريق التفوق:</p>
@@ -319,13 +334,14 @@
                 <li><strong>تنظيم يريح الأعصاب:</strong> لوحة تحكم تخبرك بما أنجزته وما تبقى عليك، لتدير وقتك كالمحترفين.</li>
             </ul>
             <p style="text-align: center; font-weight: bold; color: #084c54; margin-top: 20px;">نحن نسهّل لك الوسيلة، لتركز أنت على النتيجة! 🎯</p>
+            <button class="modal-close-btn-bottom" onclick="closeFromUI()">إغلاق النافذة والعودة</button>
         </div>
     </div>
 </div>
 
 <div class="modal-overlay" id="chat-modal">
     <div class="modal-content">
-        <span class="close-btn" onclick="closeModal('chat-modal')">&times;</span>
+        <span class="close-btn" onclick="closeFromUI()">&times;</span>
         <div class="modal-title"><span style="font-size: 2.5rem;">💬</span> لن تتعثر في أي سؤال بعد اليوم</div>
         <div class="modal-body">
             <p>المذاكرة الفردية قد تكون محبطة أحياناً، لذلك صممنا لك بيئة تفاعلية حية عبر <strong>جوجل تشات</strong>:</p>
@@ -334,13 +350,14 @@
                 <li><strong>تعلم من أخطاء غيرك:</strong> الأسئلة والمناقشات السابقة محفوظة (ذاكرة المنصة)، يمكنك تصفحها لتستفيد من أسئلة زملائك.</li>
                 <li><strong>جو تنافسي إيجابي:</strong> تواصل راقٍ ومفيد يشجعك على الاستمرار والمنافسة مع نخبة الطلاب.</li>
             </ul>
+            <button class="modal-close-btn-bottom" onclick="closeFromUI()">إغلاق النافذة والعودة</button>
         </div>
     </div>
 </div>
 
 <div class="modal-overlay" id="whatsapp-modal">
     <div class="modal-content">
-        <span class="close-btn" onclick="closeModal('whatsapp-modal')">&times;</span>
+        <span class="close-btn" onclick="closeFromUI()">&times;</span>
         <div class="modal-title"><span style="font-size: 2.5rem;">🛡️</span> راحة البال لولي الأمر</div>
         <div class="modal-body">
             <p>لأنك شريكنا الأساسي في نجاح ابنك، صممنا <strong>مجتمع واتساب المغلق</strong> ليكون حلقة الوصل المباشرة بيننا وبينك:</p>
@@ -350,13 +367,14 @@
                 <li><strong>قرارات وتحديثات المنصة:</strong> كن أول من يعلم بالمعسكرات والمراجعات النهائية المجانية لمشتركي المنصة.</li>
             </ul>
             <p style="text-align: center; font-weight: bold; color: #128c7e; margin-top: 20px;">استثمارك في ثابر هو استثمار في راحة بالك ومستقبل أبنائك. 🌟</p>
+            <button class="modal-close-btn-bottom" onclick="closeFromUI()">إغلاق النافذة والعودة</button>
         </div>
     </div>
 </div>
 
 <div class="modal-overlay" id="features-modal">
     <div class="modal-content">
-        <span class="close-btn" onclick="closeModal('features-modal')">&times;</span>
+        <span class="close-btn" onclick="closeFromUI()">&times;</span>
         <div class="modal-title"><span style="font-size: 2.5rem;">🏆</span> منظومة ثابر.. أكثر من مجرد دروس</div>
         <div class="modal-body">
             <p>اشتراكك معنا يمنحك مفاتيح التفوق المتكاملة، وهي ميزات صُممت بناءً على احتياجات الطلاب الفعلية:</p>
@@ -366,43 +384,48 @@
                 <li><strong>تحفيز يصنع المعجزات:</strong> شهادات تقدير دورية وتكريم للطلاب المتفوقين لبناء ثقتهم بأنفسهم.</li>
                 <li><strong>دعم فني في خدمتك:</strong> فريقنا التقني متواجد دائماً لضمان عدم انقطاع الطالب عن دراسته لأي سبب فني.</li>
             </ul>
+            <button class="modal-close-btn-bottom" onclick="closeFromUI()">إغلاق النافذة والعودة</button>
         </div>
     </div>
 </div>
 
 <script>
-    // أكواد فتح وإغلاق النوافذ المنبثقة
+    // --------------------------------------------------------
+    // نظام التحكم الذكي بالنوافذ المنبثقة (يدعم زر التراجع بالهاتف)
+    // --------------------------------------------------------
+
+    // دالة فتح النافذة المنبثقة وتسجيل الحدث في متصفح الهاتف
     function openModal(modalId) {
         document.getElementById(modalId).style.display = 'flex';
         document.body.style.overflow = 'hidden'; 
+        // هذه الإضافة هي التي تمنع خروج المستخدم من الصفحة عند ضغط "رجوع"
+        window.history.pushState({ modalOpen: true }, "", "#" + modalId);
     }
     
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = 'none';
+    // دالة الإغلاق الفعلية (تُخفي جميع النوافذ المفتوحة)
+    function closeModalLogic() {
+        const modals = document.querySelectorAll('.modal-overlay');
+        modals.forEach(m => m.style.display = 'none');
         document.body.style.overflow = 'auto'; 
     }
-    
-    // إغلاق النافذة عند الضغط على المساحة الرمادية خارجها
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal-overlay')) {
-            event.target.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    }
-</script>
 
-</body>
-</html>
-y.style.overflow = 'hidden'; 
+    // عندما يضغط المستخدم على زر الإغلاق "X" أو الزر السفلي
+    function closeFromUI() {
+        // نطلب من المتصفح الرجوع خطوة للوراء (كأنه ضغط زر الهاتف)
+        // هذا سيستدعي حدث 'popstate' تلقائياً والذي سيغلق النافذة
+        window.history.back();
     }
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = 'none';
-        document.body.style.overflow = 'auto'; 
-    }
+
+    // مستمع لزر "الرجوع" في الهاتف (Hardware Back Button)
+    window.addEventListener('popstate', function(event) {
+        // كلما تم الضغط على رجوع، نقوم بإغلاق النافذة بكل أمان
+        closeModalLogic();
+    });
+
+    // إغلاق النافذة عند الضغط على المساحة الرمادية المحيطة
     window.onclick = function(event) {
         if (event.target.classList.contains('modal-overlay')) {
-            event.target.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            closeFromUI();
         }
     }
 </script>
