@@ -46,28 +46,6 @@
             padding-bottom: 120px; 
         }
 
-        /* زر الموسيقى بأناقة */
-        .music-btn {
-            position: fixed;
-            top: 60px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid #f1c40f;
-            color: #f1c40f;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-        .music-btn:hover { background: rgba(241, 196, 15, 0.2); transform: scale(1.1); }
-
         .hero-title {
             font-size: 3.5rem;
             font-weight: 900;
@@ -92,13 +70,19 @@
             line-height: 1.6;
         }
 
-        /* قسم الميزات الجذاب */
+        /* قسم الميزات الجذاب مع وميض تفاعلي */
         .features-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
             margin-bottom: 60px;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 8px 15px rgba(0,0,0,0.2); transform: scale(1); }
+            50% { box-shadow: 0 8px 25px rgba(241, 196, 15, 0.6); transform: scale(1.02); }
+            100% { box-shadow: 0 8px 15px rgba(0,0,0,0.2); transform: scale(1); }
         }
 
         .feature-pill {
@@ -108,19 +92,19 @@
             border-radius: 50px;
             font-weight: 900;
             font-size: 1.2rem;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             gap: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 2px solid #f1c40f;
+            animation: pulse-glow 2s infinite ease-in-out; /* وميض مستمر لجذب الانتباه */
         }
         
         .feature-pill:hover {
-            transform: translateY(-5px);
-            border-color: #f1c40f;
-            box-shadow: 0 12px 20px rgba(241, 196, 15, 0.3);
+            transform: translateY(-5px) scale(1.05);
+            animation: none;
+            box-shadow: 0 12px 20px rgba(241, 196, 15, 0.4);
         }
 
         .main-cards {
@@ -169,7 +153,24 @@
         .card-chat { border-color: #0F9D58; }
         .card-whatsapp { border-color: #128c7e; }
 
-        .card-icon { font-size: 5rem; margin-bottom: 10px; z-index: 2; position: relative; }
+        /* حركة الوميض للأيقونات داخل البطاقات للدلالة على أنها قابلة للضغط */
+        @keyframes pulse-icon {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); text-shadow: 0 0 15px rgba(241, 196, 15, 0.6); }
+            100% { transform: scale(1); }
+        }
+
+        .card-icon { 
+            font-size: 5rem; 
+            margin-bottom: 10px; 
+            z-index: 2; 
+            position: relative;
+            animation: pulse-icon 2s infinite ease-in-out; /* وميض الأيقونة */
+            display: inline-block;
+        }
+        
+        .card:hover .card-icon { animation: none; transform: scale(1.1); } /* إيقاف الوميض عند التمرير وتكبيرها قليلاً */
+
         .card-title { font-size: 1.8rem; font-weight: 900; margin-bottom: 15px; z-index: 2; position: relative; }
         .card-content { flex: 1; z-index: 2; position: relative; }
 
@@ -240,9 +241,6 @@
 </head>
 <body>
 
-<audio id="bgMusic" loop><source src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg"></audio>
-<button class="music-btn" id="musicToggleBtn" onclick="toggleAudio()" title="تشغيل/إيقاف الموسيقى">🔇</button>
-
 <!-- شريط طمأنة لولي الأمر والطالب -->
 <div class="trust-bar">
     <span>👨‍🏫 نخبة من أفضل المعلمين</span>
@@ -255,7 +253,8 @@
     <p class="subtitle">نحن لا نقدم دروساً فقط.. نحن نصنع بيئة متكاملة تضمن <strong>متعة التعلم للطالب</strong>، و<strong>راحة البال لولي الأمر</strong>. اكتشف كيف نفعل ذلك 👇</p>
 
     <div class="features-grid">
-        <div class="feature-pill" onclick="openModal('features-modal')">⭐ لماذا يختارنا آلاف الطلاب؟ (اكتشف السر)</div>
+        <!-- تم تعديل النص وإضافة حركة وميض مستمرة للزر -->
+        <div class="feature-pill" onclick="openModal('features-modal')">⭐ لماذا يختارنا الطلاب؟ (اكتشف السر)</div>
     </div>
 
     <div class="main-cards">
@@ -350,7 +349,7 @@
                 <li><strong>تنبيهات الامتحانات:</strong> رسائل تذكيرية قبل مواعيد التقييمات والاختبارات لتوفير الجو المناسب لهم في المنزل.</li>
                 <li><strong>قرارات وتحديثات المنصة:</strong> كن أول من يعلم بالمعسكرات والمراجعات النهائية المجانية لمشتركي المنصة.</li>
             </ul>
-            <p style="text-align: center; font-weight: bold; color: #128c7e; margin-top: 20px;">استثمرك في ثابر هو استثمار في راحة بالك ومستقبل أبنائك. 🌟</p>
+            <p style="text-align: center; font-weight: bold; color: #128c7e; margin-top: 20px;">استثمارك في ثابر هو استثمار في راحة بالك ومستقبل أبنائك. 🌟</p>
         </div>
     </div>
 </div>
@@ -372,26 +371,29 @@
 </div>
 
 <script>
-    const bgMusic = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicToggleBtn');
-    bgMusic.volume = 0.15;
-    let isMusicPlaying = false;
-    document.body.addEventListener('click', function startMusic() {
-        if (!isMusicPlaying) {
-            bgMusic.play().then(() => {
-                isMusicPlaying = true;
-                musicBtn.innerHTML = '🎵'; 
-            }).catch(e => console.log("المتصفح منع التشغيل التلقائي."));
-            document.body.removeEventListener('click', startMusic);
-        }
-    }, { once: true });
-    function toggleAudio() {
-        if (bgMusic.paused) { bgMusic.play(); musicBtn.innerHTML = '🎵'; isMusicPlaying = true; } 
-        else { bgMusic.pause(); musicBtn.innerHTML = '🔇'; isMusicPlaying = false; }
-    }
+    // أكواد فتح وإغلاق النوافذ المنبثقة
     function openModal(modalId) {
         document.getElementById(modalId).style.display = 'flex';
         document.body.style.overflow = 'hidden'; 
+    }
+    
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+        document.body.style.overflow = 'auto'; 
+    }
+    
+    // إغلاق النافذة عند الضغط على المساحة الرمادية خارجها
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal-overlay')) {
+            event.target.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+</script>
+
+</body>
+</html>
+y.style.overflow = 'hidden'; 
     }
     function closeModal(modalId) {
         document.getElementById(modalId).style.display = 'none';
