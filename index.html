@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة ثابر التعليمية - دليلك التفاعلي</title>
+    <title>منصة ثابر التعليمية | بوابتك للتفوق</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
         
@@ -11,8 +11,8 @@
             margin: 0;
             padding: 0;
             font-family: 'Cairo', sans-serif;
-            background-color: #0b5961;
-            background-image: linear-gradient(135deg, #09474d 0%, #158b97 100%);
+            background-color: #084c54;
+            background-image: linear-gradient(135deg, #053238 0%, #158b97 100%);
             color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -21,64 +21,106 @@
             overflow-x: hidden;
         }
 
+        /* شريط الثقة العلوي لولي الأمر */
+        .trust-bar {
+            background: rgba(0, 0, 0, 0.4);
+            width: 100%;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #f1c40f;
+            flex-wrap: wrap;
+        }
+        
+        .trust-bar span { display: flex; align-items: center; gap: 5px; }
+
         .container {
             width: 95%;
             max-width: 1200px;
-            padding: 30px 10px;
+            padding: 40px 10px;
             text-align: center;
             flex: 1;
-            padding-bottom: 100px; /* Space for fixed button */
+            padding-bottom: 120px; 
         }
 
-        .header-title {
-            font-size: 3rem;
+        /* زر الموسيقى بأناقة */
+        .music-btn {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #f1c40f;
+            color: #f1c40f;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        .music-btn:hover { background: rgba(241, 196, 15, 0.2); transform: scale(1.1); }
+
+        .hero-title {
+            font-size: 3.5rem;
             font-weight: 900;
             color: #ffffff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            background: rgba(255, 255, 255, 0.15);
-            padding: 15px 50px;
-            border-radius: 50px;
-            display: inline-block;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            border: 2px solid rgba(255,255,255,0.4);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.4);
+            line-height: 1.2;
         }
+        
+        .hero-title span { color: #f1c40f; }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 40px;
             color: #e0f2f1;
             font-weight: 700;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            text-shadow: 1px 2px 3px rgba(0,0,0,0.3);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
 
+        /* قسم الميزات الجذاب */
         .features-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .feature-pill {
-            background: #ffffff;
-            color: #09474d;
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: linear-gradient(45deg, #ffffff, #f7f7f7);
+            color: #084c54;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             gap: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
         
         .feature-pill:hover {
-            transform: scale(1.05);
-            background: #e0f2f1;
+            transform: translateY(-5px);
+            border-color: #f1c40f;
+            box-shadow: 0 12px 20px rgba(241, 196, 15, 0.3);
         }
 
         .main-cards {
@@ -90,247 +132,172 @@
             margin-bottom: 40px;
         }
 
+        /* تصميم البطاقات التسويقي */
         .card {
-            background-color: #f7fbfa;
-            color: #0b5961;
+            background-color: #ffffff;
             border-radius: 30px;
-            padding: 30px 25px;
+            padding: 35px 25px;
             width: 320px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-            border: 6px solid #a3d9d3;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             position: relative;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
+            border-top: 8px solid;
+            overflow: hidden;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(241, 196, 15, 0.05) 100%);
+            z-index: 1; pointer-events: none;
         }
+
+        .card:hover { transform: translateY(-15px); box-shadow: 0 30px 50px rgba(0,0,0,0.4); }
         
         .card::after {
-            content: 'اضغط للتفاصيل 👆';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #e49e25;
-            color: #fff;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            white-space: nowrap;
+            content: 'اكتشف السر 👆';
+            position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+            background: #084c54; color: #f1c40f; padding: 8px 20px;
+            border-radius: 20px; font-size: 1rem; font-weight: 900;
+            opacity: 0; transition: all 0.3s ease; white-space: nowrap; z-index: 2;
         }
+        .card:hover::after { opacity: 1; bottom: 20px; }
 
-        .card:hover::after {
-            opacity: 1;
-        }
-
-        .card-whatsapp { border-color: #25D366; }
-        .card-classroom { 
-            border-color: #F4B400; 
-            background-color: #ffffff;
-        }
+        .card-classroom { border-color: #F4B400; }
         .card-chat { border-color: #0F9D58; }
+        .card-whatsapp { border-color: #128c7e; }
 
-        .card-icon {
-            font-size: 4.5rem;
-            margin-bottom: 15px;
+        .card-icon { font-size: 5rem; margin-bottom: 10px; z-index: 2; position: relative; }
+        .card-title { font-size: 1.8rem; font-weight: 900; margin-bottom: 15px; z-index: 2; position: relative; }
+        .card-content { flex: 1; z-index: 2; position: relative; }
+
+        .marketing-tag {
+            background: #f1c40f; color: #000; font-size: 0.85rem; font-weight: bold;
+            padding: 5px 12px; border-radius: 15px; display: inline-block; margin-bottom: 10px;
         }
 
-        .card-title {
-            font-size: 2rem;
-            font-weight: 900;
-            margin-bottom: 10px;
-        }
-
-        /* Modals (Popups) */
+        /* النوافذ المنبثقة (Modals) بمظهر احترافي */
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8); display: none; justify-content: center; align-items: center;
+            z-index: 1000; backdrop-filter: blur(8px);
         }
-
         .modal-content {
-            background: #ffffff;
-            color: #333;
-            width: 90%;
-            max-width: 600px;
-            border-radius: 20px;
-            padding: 40px 30px;
-            position: relative;
-            text-align: right;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            animation: slideUp 0.4s ease forwards;
+            background: #ffffff; color: #333; width: 90%; max-width: 650px;
+            border-radius: 25px; padding: 40px; position: relative; text-align: right;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5); animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            border: 4px solid #f1c40f;
         }
-
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         .close-btn {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 2rem;
-            color: #888;
-            cursor: pointer;
-            transition: color 0.3s;
-            line-height: 1;
+            position: absolute; top: 15px; left: 20px; font-size: 2.5rem;
+            color: #aaa; cursor: pointer; transition: color 0.3s; line-height: 1;
         }
-
         .close-btn:hover { color: #e74c3c; }
 
         .modal-title {
-            font-size: 2rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            color: #0b5961;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            font-size: 2.2rem; font-weight: 900; margin-bottom: 20px;
+            color: #084c54; border-bottom: 3px solid #eee; padding-bottom: 15px; display: flex; align-items: center; gap: 15px;
         }
+        .modal-body { font-size: 1.15rem; line-height: 1.9; }
+        .modal-body ul { padding-right: 25px; }
+        .modal-body ul li { margin-bottom: 15px; position: relative; }
+        .modal-body ul li::marker { content: '✅ '; font-size: 1.2rem; }
+        .modal-body strong { color: #d35400; }
 
-        .modal-body {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        
-        .modal-body ul {
-            padding-right: 20px;
-        }
-        
-        .modal-body ul li {
-            margin-bottom: 15px;
-        }
-        
-        .modal-body strong {
-            color: #0b5961;
-        }
-
-        /* Call to Action Button */
-        .cta-container {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-        }
-
+        /* زر البيع (Call to Action) */
+        .cta-container { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 100; width: 90%; max-width: 400px; text-align: center; }
         .cta-btn {
-            background: linear-gradient(45deg, #e49e25, #f39c12);
-            color: #ffffff;
-            font-size: 1.5rem;
-            font-weight: 900;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 10px 20px rgba(228, 158, 37, 0.4);
-            border: 3px solid #fff;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: pulse 2s infinite;
+            background: linear-gradient(45deg, #f39c12, #d35400); color: #ffffff;
+            font-size: 1.4rem; font-weight: 900; padding: 18px 20px; border-radius: 50px;
+            text-decoration: none; box-shadow: 0 10px 25px rgba(211, 84, 0, 0.5);
+            border: 3px solid #fff; transition: all 0.3s ease; display: flex; justify-content: center; align-items: center; gap: 10px;
+            animation: pulse-gold 2s infinite; width: 100%;
         }
-
-        .cta-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 25px rgba(228, 158, 37, 0.6);
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(228, 158, 37, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(228, 158, 37, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(228, 158, 37, 0); }
+        .cta-btn:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 35px rgba(211, 84, 0, 0.7); }
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(241, 196, 15, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0); }
         }
 
         .footer {
-            background: rgba(9, 71, 77, 0.9);
-            width: 100%;
-            padding: 20px 0;
-            margin-top: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
-            flex-wrap: wrap;
-            padding-bottom: 120px; /* Adjust for fixed button */
+            background: #053238; width: 100%; padding: 25px 0; display: flex; justify-content: center; align-items: center;
+            gap: 40px; font-size: 1.2rem; font-weight: bold; border-top: 2px solid rgba(255,255,255,0.1);
+            flex-wrap: wrap; padding-bottom: 120px; color: #a3d9d3;
         }
         
         @media (max-width: 768px) {
-            .header-title { font-size: 2.2rem; padding: 10px 30px; }
+            .hero-title { font-size: 2.2rem; }
+            .subtitle { font-size: 1.1rem; }
             .card { width: 100%; max-width: 350px; }
-            .cta-btn { font-size: 1.2rem; padding: 12px 30px; }
+            .trust-bar { font-size: 0.8rem; gap: 15px; }
         }
     </style>
 </head>
 <body>
 
+<audio id="bgMusic" loop><source src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg"></audio>
+<button class="music-btn" id="musicToggleBtn" onclick="toggleAudio()" title="تشغيل/إيقاف الموسيقى">🔇</button>
+
+<!-- شريط طمأنة لولي الأمر والطالب -->
+<div class="trust-bar">
+    <span>👨‍🏫 نخبة من أفضل المعلمين</span>
+    <span>📊 تقارير أداء مستمرة</span>
+    <span>🎯 خطط دراسية مرنة ومجربة</span>
+</div>
+
 <div class="container">
-    <div class="header-title">نظام ثابر التعليمية</div>
-    <div class="subtitle">اضغط على أي قسم لمعرفة المزيد من التفاصيل حول ميزات منصتنا</div>
+    <h1 class="hero-title">منصة <span>ثابر</span> التعليمية</h1>
+    <p class="subtitle">نحن لا نقدم دروساً فقط.. نحن نصنع بيئة متكاملة تضمن <strong>متعة التعلم للطالب</strong>، و<strong>راحة البال لولي الأمر</strong>. اكتشف كيف نفعل ذلك 👇</p>
 
     <div class="features-grid">
-        <div class="feature-pill" onclick="openModal('features-modal')">✨ استكشف ميزات المنصة الإضافية</div>
+        <div class="feature-pill" onclick="openModal('features-modal')">⭐ لماذا يختارنا آلاف الطلاب؟ (اكتشف السر)</div>
     </div>
 
     <div class="main-cards">
-        <!-- Google Classroom Card -->
+        
+        <!-- بطاقة الطالب (جوجل كلاس روم) -->
         <div class="card card-classroom" onclick="openModal('classroom-modal')">
+            <span class="marketing-tag">الطالب يدرس بذكاء 🧠</span>
             <div class="card-icon">🏫</div>
-            <div class="card-title" style="color: #fbbc04;">جوجل كلاس روم</div>
+            <div class="card-title" style="color: #d35400;">فصلك في جيبك</div>
             <div class="card-content">
-                <p style="text-align: center; font-weight: 900; color: #0b5961; font-size: 1.2rem;">بيئة تعليمية متكاملة وسهلة الاستخدام.</p>
-                <p style="text-align: center; color: #666;">الفصول الافتراضية، الواجبات، والملفات في مكان واحد.</p>
+                <p style="text-align: center; font-weight: 900; color: #333; font-size: 1.1rem;">بيئة تعليمية لا تعرف الملل.</p>
+                <p style="text-align: center; color: #666;">كل دروسك، واجباتك، وملازمك منظمة بطريقة تفتح النفس للمذاكرة (عبر جوجل كلاس روم).</p>
             </div>
         </div>
 
-        <!-- Google Chat Card -->
+        <!-- بطاقة التفاعل (جوجل تشات) -->
         <div class="card card-chat" onclick="openModal('chat-modal')">
+            <span class="marketing-tag">لا للمذاكرة وحيداً 🤝</span>
             <div class="card-icon">💬</div>
-            <div class="card-title" style="color: #0F9D58;">جوجل تشات</div>
+            <div class="card-title" style="color: #0F9D58;">مجتمع ثابر التفاعلي</div>
             <div class="card-content">
-                <p style="text-align: center; font-weight: 900; color: #0b5961; font-size: 1.2rem;">للمزيد من الفعالية في الدراسة.</p>
-                <p style="text-align: center; color: #666;">مساحات النقاش، التواصل المباشر مع المعلمين والزملاء.</p>
+                <p style="text-align: center; font-weight: 900; color: #333; font-size: 1.1rem;">أسئلتك مُجاب عليها فوراً.</p>
+                <p style="text-align: center; color: #666;">عبر (جوجل تشات)، تواصل مع معلميك وزملائك في أي وقت، شارك أفكارك، وتغلب على أي صعوبة.</p>
             </div>
         </div>
         
-        <!-- WhatsApp Card -->
+        <!-- بطاقة ولي الأمر (واتساب) -->
         <div class="card card-whatsapp" onclick="openModal('whatsapp-modal')">
+            <span class="marketing-tag">لولي الأمر المطمئن 🛡️</span>
             <div class="card-icon">📢</div>
-            <div class="card-title" style="color: #128c7e;">مجتمع واتساب</div>
+            <div class="card-title" style="color: #128c7e;">أنت معنا بالصورة</div>
             <div class="card-content">
-                <p style="text-align: center; font-weight: 900; color: #0b5961; font-size: 1.2rem;">لتبقَ على اطلاع دائم.</p>
-                <p style="text-align: center; color: #666;">إشعارات فورية وتنبيهات مستمرة للطلبة المشتركين.</p>
+                <p style="text-align: center; font-weight: 900; color: #333; font-size: 1.1rem;">لا مفاجآت بعد اليوم.</p>
+                <p style="text-align: center; color: #666;">عبر (مجتمع واتساب)، تصلك تنبيهات فورية بمواعيد الحصص، الامتحانات، ومستوى إنجاز الأبناء.</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- CTA Button -->
 <div class="cta-container">
     <a href="https://linktr.ee/thaberacademy" target="_blank" class="cta-btn">
-        🚀 اشترك في المنصة الآن
+        🚀 استثمر في مستقبل ابنك - اشترك الآن
     </a>
 </div>
 
@@ -340,93 +307,98 @@
     <div style="display: flex; gap: 10px; align-items: center;"><span>🌐</span> <span dir="ltr">www.thaber.com</span></div>
 </div>
 
-<!-- ================= MODALS ================= -->
-
-<!-- Classroom Modal -->
+<!-- ================= MODALS (الرسائل التسويقية الداخلية) ================= -->
 <div class="modal-overlay" id="classroom-modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal('classroom-modal')">&times;</span>
-        <div class="modal-title"><span style="font-size: 2.5rem;">🏫</span> جوجل كلاس روم</div>
+        <div class="modal-title"><span style="font-size: 2.5rem;">🏫</span> نظام دراسي مصمم لنجاحك</div>
         <div class="modal-body">
-            <p>منصة <strong>جوجل كلاس روم</strong> هي القلب النابض لعملية التعلم في منصة ثابر. حيث تم تنظيمها بعناية لتقديم تجربة دراسية سلسة:</p>
+            <p>نحن نعلم أن الفوضى تشتت التركيز، لذلك استخدمنا <strong>جوجل كلاس روم</strong> لنرتب لك طريق التفوق:</p>
             <ul>
-                <li><strong>مكتبة الدروس المسجلة:</strong> أرشيف كامل لجميع الحصص السابقة مقسمة حسب الفصول والوحدات لتتمكن من مراجعتها في أي وقت.</li>
-                <li><strong>الوصول السريع للحصص المباشرة:</strong> روابط الدخول للحصص التفاعلية محدثة باستمرار وموجودة في واجهة الفصل.</li>
-                <li><strong>إدارة الملفات والأنشطة:</strong> جميع الملازم، أوراق العمل، والملخصات متاحة للتحميل ومصنفة بشكل مرتب.</li>
-                <li><strong>الواجبات المنظمة:</strong> استلام وتسليم الواجبات إلكترونياً مع معرفة تواريخ التسليم النهائية لتنظيم وقتك.</li>
+                <li><strong>وداعاً لضياع الدروس:</strong> مكتبة رقمية ضخمة ومسجلة بجودة عالية، لتعود لأي درس لم تفهمه في أي وقت قبل الامتحان.</li>
+                <li><strong>مذكرات وملازم حصرية:</strong> أنشطة وملفات مرتبة بدقة لا تجدها في أي مكان آخر، جاهزة للتحميل بضغطة زر.</li>
+                <li><strong>تنظيم يريح الأعصاب:</strong> لوحة تحكم تخبرك بما أنجزته وما تبقى عليك، لتدير وقتك كالمحترفين.</li>
             </ul>
+            <p style="text-align: center; font-weight: bold; color: #084c54; margin-top: 20px;">نحن نسهّل لك الوسيلة، لتركز أنت على النتيجة! 🎯</p>
         </div>
     </div>
 </div>
 
-<!-- Chat Modal -->
 <div class="modal-overlay" id="chat-modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal('chat-modal')">&times;</span>
-        <div class="modal-title"><span style="font-size: 2.5rem;">💬</span> جوجل تشات (Google Chat)</div>
+        <div class="modal-title"><span style="font-size: 2.5rem;">💬</span> لن تتعثر في أي سؤال بعد اليوم</div>
         <div class="modal-body">
-            <p>لأن النقاش هو أساس الفهم، وفرنا لك مساحة تفاعلية آمنة ومنظمة عبر <strong>جوجل تشات</strong>:</p>
+            <p>المذاكرة الفردية قد تكون محبطة أحياناً، لذلك صممنا لك بيئة تفاعلية حية عبر <strong>جوجل تشات</strong>:</p>
             <ul>
-                <li><strong>مساحات مخصصة (Spaces):</strong> غرف نقاش مخصصة لكل مادة للتركيز على الأسئلة الخاصة بها دون تشتت.</li>
-                <li><strong>ذاكرة المنصة الدائمة:</strong> محادثاتك وأسئلتك السابقة، بالإضافة إلى ردود المعلمين، محفوظة دائماً ويمكنك العودة لها.</li>
-                <li><strong>مشاركة سهلة للملفات:</strong> إمكانية إرسال صور للأسئلة أو ملفات مباشرة للمعلم لمناقشتها.</li>
-                <li><strong>مرونة الوصول:</strong> يمكنك استخدام التطبيق من هاتفك المحمول، جهازك اللوحي (التابلت)، أو الكمبيوتر الشخصي بكل سهولة.</li>
+                <li><strong>معلمك معك دائماً:</strong> مساحات نقاش (Spaces) مخصصة لكل مادة. واجهت سؤالاً صعباً؟ صوره وشاركه وسيأتيك الرد الشافي.</li>
+                <li><strong>تعلم من أخطاء غيرك:</strong> الأسئلة والمناقشات السابقة محفوظة (ذاكرة المنصة)، يمكنك تصفحها لتستفيد من أسئلة زملائك.</li>
+                <li><strong>جو تنافسي إيجابي:</strong> تواصل راقٍ ومفيد يشجعك على الاستمرار والمنافسة مع نخبة الطلاب.</li>
             </ul>
         </div>
     </div>
 </div>
 
-<!-- WhatsApp Modal -->
 <div class="modal-overlay" id="whatsapp-modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal('whatsapp-modal')">&times;</span>
-        <div class="modal-title"><span style="font-size: 2.5rem;">📢</span> مجتمع واتساب</div>
+        <div class="modal-title"><span style="font-size: 2.5rem;">🛡️</span> راحة البال لولي الأمر</div>
         <div class="modal-body">
-            <p>نحرص في منصة ثابر على بقائك في قلب الحدث عبر <strong>مجتمع واتساب الخاص بالمنصة</strong>:</p>
+            <p>لأنك شريكنا الأساسي في نجاح ابنك، صممنا <strong>مجتمع واتساب المغلق</strong> ليكون حلقة الوصل المباشرة بيننا وبينك:</p>
             <ul>
-                <li><strong>إشعارات فورية:</strong> تذكير بمواعيد الحصص المباشرة قبل بدايتها.</li>
-                <li><strong>تنبيهات هامة:</strong> إعلانات عن توفر ملخصات جديدة، أو اقتراب مواعيد الاختبارات.</li>
-                <li><strong>تواصل سريع:</strong> أداة سريعة وموثوقة لإيصال التوجيهات الإدارية للطلاب وأولياء الأمور.</li>
+                <li><strong>متابعة لحظية (بدون إزعاج):</strong> إشعارات سريعة تذكرك بمواعيد بدء الحصص المباشرة لضمان التزام أبنائك.</li>
+                <li><strong>تنبيهات الامتحانات:</strong> رسائل تذكيرية قبل مواعيد التقييمات والاختبارات لتوفير الجو المناسب لهم في المنزل.</li>
+                <li><strong>قرارات وتحديثات المنصة:</strong> كن أول من يعلم بالمعسكرات والمراجعات النهائية المجانية لمشتركي المنصة.</li>
             </ul>
+            <p style="text-align: center; font-weight: bold; color: #128c7e; margin-top: 20px;">استثمرك في ثابر هو استثمار في راحة بالك ومستقبل أبنائك. 🌟</p>
         </div>
     </div>
 </div>
 
-<!-- General Features Modal -->
 <div class="modal-overlay" id="features-modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal('features-modal')">&times;</span>
-        <div class="modal-title"><span style="font-size: 2.5rem;">✨</span> الميزات الإضافية لمنصة ثابر</div>
+        <div class="modal-title"><span style="font-size: 2.5rem;">🏆</span> منظومة ثابر.. أكثر من مجرد دروس</div>
         <div class="modal-body">
-            <p>لا نكتفي بتقديم الدروس فقط، بل نوفر منظومة متكاملة لضمان تفوقك:</p>
+            <p>اشتراكك معنا يمنحك مفاتيح التفوق المتكاملة، وهي ميزات صُممت بناءً على احتياجات الطلاب الفعلية:</p>
             <ul>
-                <li><strong>تقويم دراسي مرن:</strong> خطط دراسية واضحة تساعد الطالب على تنظيم وقته بين المذاكرة وحضور الحصص.</li>
-                <li><strong>الاختبارات والتقييمات الرقمية:</strong> اختبارات دورية (قصيرة وشهرية) لقياس مستوى الفهم وتثبيت المعلومات.</li>
-                <li><strong>تتبع وتحليل أداء الطالب:</strong> تقارير دورية توضح نقاط القوة والمجالات التي تحتاج لتطوير.</li>
-                <li><strong>شهادات مشاركة وإتمام:</strong> تحفيز مستمر للطلاب المتميزين والمواظبين تقديراً لجهودهم.</li>
-                <li><strong>دعم تقني وإداري متواصل:</strong> فريق جاهز لحل أي مشكلة تقنية تواجهك أثناء استخدام المنصة.</li>
+                <li><strong>تقييم مستمر يمنع تراكم المنهج:</strong> اختبارات رقمية دورية تضع الطالب دائماً في جو الامتحانات لكسر رهبة الاختبار النهائي.</li>
+                <li><strong>تقارير أداء كاشفة:</strong> نضع يدك على نقاط القوة لتعزيزها، ونقاط الضعف لمعالجتها مبكراً (تحليل دقيق لمستوى الطالب).</li>
+                <li><strong>تحفيز يصنع المعجزات:</strong> شهادات تقدير دورية وتكريم للطلاب المتفوقين لبناء ثقتهم بأنفسهم.</li>
+                <li><strong>دعم فني في خدمتك:</strong> فريقنا التقني متواجد دائماً لضمان عدم انقطاع الطالب عن دراسته لأي سبب فني.</li>
             </ul>
         </div>
     </div>
 </div>
 
 <script>
-    // Functions to handle modals
+    const bgMusic = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicToggleBtn');
+    bgMusic.volume = 0.15;
+    let isMusicPlaying = false;
+    document.body.addEventListener('click', function startMusic() {
+        if (!isMusicPlaying) {
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                musicBtn.innerHTML = '🎵'; 
+            }).catch(e => console.log("المتصفح منع التشغيل التلقائي."));
+            document.body.removeEventListener('click', startMusic);
+        }
+    }, { once: true });
+    function toggleAudio() {
+        if (bgMusic.paused) { bgMusic.play(); musicBtn.innerHTML = '🎵'; isMusicPlaying = true; } 
+        else { bgMusic.pause(); musicBtn.innerHTML = '🔇'; isMusicPlaying = false; }
+    }
     function openModal(modalId) {
         document.getElementById(modalId).style.display = 'flex';
-        // Prevent scrolling on background
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden'; 
     }
-
     function closeModal(modalId) {
         document.getElementById(modalId).style.display = 'none';
-        // Restore scrolling
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = 'auto'; 
     }
-
-    // Close modal when clicking outside of it
     window.onclick = function(event) {
-        if (event.target.className === 'modal-overlay') {
+        if (event.target.classList.contains('modal-overlay')) {
             event.target.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
